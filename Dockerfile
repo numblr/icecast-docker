@@ -1,19 +1,15 @@
 FROM amazonlinux
 
+
+ARG iceversion=2.4.4
+
+
 RUN yum update -y \
   && yum groupinstall -y "Development Tools" \
   && yum install -y \
-  docker \
-  vim-enhanced \
-  git \
   libxml2 \
-  libxslt \
   curl \
-  openssl \
-  autoconf \
   libxslt-devel \
-  libxslt-devel \
-  libvorbis \
   libvorbis-devel \
   openssl \
   wget \
@@ -23,10 +19,10 @@ RUN useradd --system icecast
 
 WORKDIR icecast
 
-RUN wget http://downloads.xiph.org/releases/icecast/icecast-2.4.4.tar.gz \
-  && tar -xzvf icecast-2.4.4.tar.gz
+RUN wget http://downloads.xiph.org/releases/icecast/icecast-$iceversion.tar.gz \
+  && tar -xzvf icecast-$iceversion.tar.gz
 
-WORKDIR icecast-2.4.4
+WORKDIR icecast-$iceversion
 
 RUN ./configure && make && make install
 
