@@ -33,6 +33,7 @@ RUN ./configure && make && make install
 
 FROM amazonlinux
 
+
 RUN yum update -y && yum install -y \
   libxml2 \
   curl \
@@ -62,4 +63,4 @@ RUN mkdir -p log web admin \
 
 COPY --chmod=0755 uncomment.xslt configure.xslt start.sh ./
 
-CMD ["./start.sh"]
+CMD ["./start.sh", "/usr/local/etc/icecast.xml"]

@@ -1,0 +1,19 @@
+# syntax=docker/dockerfile:1
+
+
+FROM alpine
+
+RUN apk add --no-cache -f icecast
+
+# RUN adduser --system icecast
+
+WORKDIR /icecast
+
+RUN mkdir -p log web admin \
+    && chown -R icecast:icecast log \
+    && chown -R icecast:icecast web \
+    && chown -R icecast:icecast admin
+
+COPY --chmod=0755 uncomment.xslt configure.xslt start.sh ./
+
+CMD ["/icecast/start.sh", "/etc/icecast.xml"]

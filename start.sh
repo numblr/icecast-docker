@@ -1,10 +1,12 @@
-#!/bin/bash
+#!/bin/sh
+
+default_config=$1
 
 if [ -e /icecast/config/icecast.xml ]
 then
     config="/icecast/config/icecast.xml"
 else
-    config="/usr/local/etc/icecast.xml"
+    config="$default_config"
 fi
 
 
