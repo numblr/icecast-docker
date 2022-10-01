@@ -12,10 +12,6 @@
     </xsl:copy>
   </xsl:template>
 
-  <xsl:template match="comment()[contains(., 'changeowner')]">
-    <xsl:value-of select="." disable-output-escaping="yes" />
-  </xsl:template>
-
   <xsl:template match="icecast/security/changeowner/user/text()">icecast</xsl:template>
   <xsl:template match="icecast/security/changeowner/group/text()">icecast</xsl:template>
 
